@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>KeyFrame Media — Portfolio</title>
+    <meta name="description" content="Portfolio of KeyFrame Media: short-form reels for real estate agents. Sample reels plus client work slots, now booking." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #faf7f1;
+        --bg-deep: #f1eadf;
+        --surface: #ffffff;
+        --surface-2: #f4efe5;
+        --ink: #191a1c;
+        --ink-2: #55534d;
+        --ink-3: #8a867c;
+        --line: #ddd5c4;
+        --charcoal: #17181b;
+        --charcoal-2: #22242a;
+        --amber: #d98a06;
+        --amber-bright: #f5a914;
+        --amber-ink: #7a4d00;
+        --amber-soft: #fdf0d3;
+        --on-dark: #f5f1e8;
+        --on-dark-2: #b9b4a6;
+        --slot-bg: #f7f3ea;
+        --shadow: 0 18px 40px rgba(25, 22, 12, 0.14);
+        --radius: 14px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #101114;
+          --bg-deep: #0b0c0e;
+          --surface: #1a1b1f;
+          --surface-2: #222329;
+          --ink: #f3efe6;
+          --ink-2: #b6b1a4;
+          --ink-3: #7e7a6e;
+          --line: #2e2f36;
+          --amber: #f5a914;
+          --amber-ink: #f5c15c;
+          --amber-soft: #2b2110;
+          --slot-bg: #15161a;
+          --shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Archivo", system-ui, -apple-system, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      img, video { display: block; max-width: 100%; }
+      a { color: inherit; }
+      .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+      .display { font-family: "Oswald", "Archivo", sans-serif; text-transform: uppercase; letter-spacing: 0.01em; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        background: var(--charcoal);
+        color: var(--on-dark);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::after {
+        content: "";
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(640px 340px at 88% -60px, rgba(245, 169, 20, 0.22), transparent 65%),
+          radial-gradient(500px 300px at -80px 110%, rgba(245, 169, 20, 0.1), transparent 60%);
+        pointer-events: none;
+      }
+      .hero-inner { position: relative; z-index: 1; padding: 56px 0 0; }
+      .hero-eyebrow {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-size: 12.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--amber-bright);
+      }
+      .hero-eyebrow::before { content: ""; width: 34px; height: 2px; background: var(--amber-bright); }
+      .hero h1 {
+        margin: 18px 0 0;
+        font-size: clamp(44px, 8.5vw, 92px);
+        line-height: 0.98; font-weight: 700;
+        max-width: 12ch;
+      }
+      .hero h1 .hl { color: var(--amber-bright); }
+      .hero-lede {
+        margin: 22px 0 0; max-width: 56ch;
+        font-size: clamp(16.5px, 2.2vw, 19.5px); line-height: 1.6;
+        color: var(--on-dark-2);
+      }
+      .hero-lede strong { color: var(--on-dark); font-weight: 600; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 9px;
+        padding: 13px 22px; border-radius: 999px;
+        font-weight: 600; font-size: 15px; text-decoration: none;
+        border: 1px solid transparent; cursor: pointer;
+        transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      }
+      .btn:active { transform: scale(0.97); }
+      .btn-amber { background: var(--amber-bright); color: #191204; }
+      .btn-amber:hover { background: #ffb92e; }
+      .btn-ghost { border-color: #3d3f47; color: var(--on-dark); background: transparent; }
+      .btn-ghost:hover { border-color: var(--amber-bright); color: var(--amber-bright); }
+      .hero-stats {
+        display: flex; flex-wrap: wrap; gap: 0;
+        margin-top: 44px; border-top: 1px solid #2c2e35;
+      }
+      .hero-stats div { padding: 18px 28px 22px 0; margin-right: 28px; }
+      .hero-stats b { display: block; font-family: "Oswald", sans-serif; font-size: 27px; font-weight: 600; color: var(--on-dark); letter-spacing: 0.02em; }
+      .hero-stats span { font-size: 13px; color: var(--on-dark-2); }
+
+      /* film strip */
+      .filmstrip {
+        position: relative; z-index: 1;
+        margin-top: 8px;
+        background: #0c0d0f;
+        border-top: 1px solid #26272c;
+        padding: 14px 0;
+        overflow: hidden;
+      }
+      .filmstrip .track { display: flex; gap: 14px; width: max-content; animation: scrollstrip 46s linear infinite; }
+      .filmstrip:hover .track { animation-play-state: paused; }
+      .frame {
+        position: relative; flex: 0 0 auto; width: 148px; aspect-ratio: 16 / 10;
+        border-radius: 6px; overflow: hidden; background: #1c1d21;
+      }
+      .frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; }
+      .frame i {
+        position: absolute; left: 8px; bottom: 6px;
+        font-style: normal; font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+        color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.8); text-transform: uppercase;
+      }
+      @keyframes scrollstrip { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      /* ---------- Sections ---------- */
+      section { padding: 72px 0 8px; }
+      .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 8px; }
+      .sec-head h2 { margin: 0; font-size: clamp(30px, 4.6vw, 44px); font-weight: 600; line-height: 1.05; }
+      .sec-head h2 .n { color: var(--amber); margin-right: 12px; }
+      .sec-sub { margin: 10px 0 0; color: var(--ink-2); max-width: 62ch; font-size: 16.5px; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 7px;
+        font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+      }
+      .badge-sample { background: var(--amber-bright); color: #1c1300; }
+      .badge-open { background: transparent; border: 1.5px dashed var(--amber); color: var(--amber-ink); }
+      @media (prefers-color-scheme: dark) { .badge-open { color: var(--amber-bright); } }
+
+      /* reel grid */
+      .reel-grid {
+        display: grid; gap: 22px; margin-top: 30px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      @media (max-width: 1020px) { .reel-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 520px) { .reel-grid { grid-template-columns: 1fr; } }
+      .reel-card {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: var(--radius); overflow: hidden;
+        display: flex; flex-direction: column;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .reel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+      .thumb {
+        position: relative; aspect-ratio: 9 / 13.2; overflow: hidden;
+        background: #101114; border: 0; padding: 0; width: 100%; cursor: pointer;
+        font: inherit; text-align: left;
+      }
+      .thumb img, .thumb video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s ease; }
+      .reel-card:hover .thumb img, .reel-card:hover .thumb video { transform: scale(1.045); }
+      .thumb::after {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(8,8,10,0.25), transparent 34%, transparent 62%, rgba(8,8,10,0.55));
+      }
+      .thumb .badge { position: absolute; top: 12px; left: 12px; z-index: 2; }
+      .thumb .dur {
+        position: absolute; top: 12px; right: 12px; z-index: 2;
+        background: rgba(10,10,12,0.72); color: #fff;
+        font-size: 11.5px; font-weight: 600; padding: 4px 9px; border-radius: 999px;
+        letter-spacing: 0.04em;
+      }
+      .play {
+        position: absolute; z-index: 2; left: 50%; top: 50%;
+        transform: translate(-50%, -50%);
+        width: 62px; height: 62px; border-radius: 50%;
+        background: rgba(14, 14, 16, 0.55); border: 1.5px solid rgba(255,255,255,0.75);
+        display: grid; place-items: center;
+        transition: background 0.15s ease, transform 0.15s ease;
+        backdrop-filter: blur(3px);
+      }
+      .thumb:hover .play, .thumb:focus-visible .play { background: var(--amber-bright); border-color: var(--amber-bright); transform: translate(-50%, -50%) scale(1.07); }
+      .play svg { width: 22px; height: 22px; margin-left: 3px; }
+      .thumb:focus-visible { outline: 3px solid var(--amber-bright); outline-offset: -3px; }
+      .reel-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+      .reel-body h3 { margin: 0; font-size: 18.5px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; }
+      .reel-body p { margin: 0; color: var(--ink-2); font-size: 14.5px; line-height: 1.55; }
+      .reel-meta { margin-top: auto; padding-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+      .chip {
+        font-size: 12px; font-weight: 600; color: var(--ink-2);
+        background: var(--surface-2); border: 1px solid var(--line);
+        padding: 4px 10px; border-radius: 999px;
+      }
+
+      /* featured compilation */
+      .featured-card {
+        margin-top: 30px;
+        background: var(--charcoal); color: var(--on-dark);
+        border-radius: var(--radius); overflow: hidden;
+        display: grid; grid-template-columns: 300px 1fr;
+        position: relative;
+      }
+      .featured-card::after {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(460px 280px at 100% 0%, rgba(245,169,20,0.18), transparent 60%);
+      }
+      .featured-card .thumb { aspect-ratio: 9 / 13.2; height: 100%; }
+      @media (max-width: 700px) {
+        .featured-card { grid-template-columns: 1fr; }
+        .featured-card .thumb { aspect-ratio: 9 / 11; }
+      }
+      .featured-body {
+        padding: clamp(22px, 3.4vw, 34px);
+        display: flex; flex-direction: column; justify-content: center; gap: 10px;
+        position: relative; z-index: 1;
+      }
+      .featured-body .badge { align-self: flex-start; }
+      .featured-body h3 { margin: 2px 0 0; font-size: clamp(24px, 3.4vw, 32px); font-weight: 600; line-height: 1.08; }
+      .featured-body h3 .hl { color: var(--amber-bright); }
+      .featured-body p { margin: 0; color: var(--on-dark-2); font-size: 15.5px; line-height: 1.6; max-width: 52ch; }
+      .featured-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+      .featured-meta .chip { background: var(--charcoal-2); border-color: #3d3f47; color: var(--on-dark-2); }
+
+      /* ---------- Client slots ---------- */
+      .client-band {
+        margin-top: 72px; background: var(--bg-deep);
+        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+        padding: 64px 0 72px;
+      }
+      .slot-grid { display: grid; gap: 22px; margin-top: 30px; grid-template-columns: repeat(4, 1fr); }
+      @media (max-width: 1020px) { .slot-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 520px) { .slot-grid { grid-template-columns: 1fr; } }
+      .slot {
+        border: 2px dashed var(--line); border-radius: var(--radius);
+        background: var(--slot-bg);
+        aspect-ratio: 9 / 13.2;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; padding: 22px; gap: 10px;
+        transition: border-color 0.18s ease, background 0.18s ease;
+      }
+      .slot:hover { border-color: var(--amber); }
+      .slot .slotnum { font-family: "Oswald", sans-serif; font-size: 13px; letter-spacing: 0.3em; color: var(--ink-3); text-transform: uppercase; }
+      .slot .plus {
+        width: 52px; height: 52px; border-radius: 50%;
+        border: 1.5px dashed var(--ink-3); display: grid; place-items: center;
+        color: var(--ink-3); font-size: 26px; font-weight: 300; line-height: 1;
+      }
+      .slot:hover .plus { border-color: var(--amber); color: var(--amber); }
+      .slot h3 { margin: 2px 0 0; font-size: 17px; font-weight: 700; }
+      .slot p { margin: 0; color: var(--ink-2); font-size: 13.5px; max-width: 24ch; }
+
+      /* ---------- Offer ---------- */
+      .offer {
+        margin-top: 72px;
+        background: var(--charcoal); color: var(--on-dark);
+        border-radius: 20px; padding: clamp(28px, 5vw, 52px);
+        display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px;
+        position: relative; overflow: hidden;
+      }
+      .offer::after {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(480px 300px at 100% 0%, rgba(245,169,20,0.2), transparent 60%);
+      }
+      @media (max-width: 820px) { .offer { grid-template-columns: 1fr; } }
+      .offer h2 { margin: 0; font-size: clamp(28px, 4vw, 40px); font-weight: 600; line-height: 1.08; position: relative; z-index: 1; }
+      .offer h2 .hl { color: var(--amber-bright); }
+      .offer .offer-sub { color: var(--on-dark-2); margin: 14px 0 0; max-width: 46ch; position: relative; z-index: 1; }
+      .offer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; position: relative; z-index: 1; align-content: start; }
+      .offer li { display: flex; gap: 11px; align-items: flex-start; font-size: 15.5px; }
+      .offer li svg { flex: 0 0 auto; margin-top: 3px; }
+      .offer li b { color: var(--on-dark); }
+      .offer li span { color: var(--on-dark-2); }
+
+      /* ---------- Process ---------- */
+      .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 30px; }
+      @media (max-width: 1020px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+      .step { border-top: 3px solid var(--ink); padding-top: 16px; }
+      .step .k { font-family: "Oswald", sans-serif; font-size: 30px; font-weight: 600; color: var(--amber); line-height: 1; }
+      .step h3 { margin: 10px 0 6px; font-size: 17px; font-weight: 700; }
+      .step p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
+
+      /* ---------- Footer ---------- */
+      footer { margin-top: 80px; border-top: 1px solid var(--line); padding: 34px 0 46px; }
+      .foot { display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center; justify-content: space-between; }
+      .foot .brand { display: inline-flex; align-items: center; gap: 10px; font-family: "Oswald", sans-serif; font-size: 19px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+      .foot p { margin: 0; color: var(--ink-3); font-size: 13.5px; max-width: 52ch; }
+
+      /* ---------- Player modal ---------- */
+      .modal {
+        position: fixed; inset: 0; z-index: 60; display: none;
+        align-items: center; justify-content: center; padding: 18px;
+        background: rgba(7, 7, 9, 0.88);
+      }
+      .modal.open { display: flex; }
+      .modal-card { width: min(400px, 100%); }
+      .modal-card.wide { width: min(720px, 100%); }
+      .modal-card.wide video { aspect-ratio: 16 / 9; }
+      .modal-card video {
+        width: 100%; aspect-ratio: 9 / 16; max-height: 76vh;
+        border-radius: 16px; background: #000; object-fit: contain;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      }
+      .modal-meta { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 14px; color: #f5f1e8; }
+      .modal-meta h3 { margin: 0; font-size: 17px; font-weight: 700; }
+      .modal-meta p { margin: 2px 0 0; font-size: 13px; color: #b9b4a6; }
+      .modal-close {
+        flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+        border: 1px solid #45464d; background: transparent; color: #f5f1e8;
+        font-size: 19px; cursor: pointer; line-height: 1;
+      }
+      .modal-close:hover { border-color: var(--amber-bright); color: var(--amber-bright); }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .filmstrip .track { animation: none; }
+        .reel-card, .thumb img, .thumb video, .play { transition: none; }
+      }
+    </style>
+  
+<style>
+/* mobile gutter fix (2026-10-20): .hero-inner padding shorthand was overriding .wrap side padding */
+.hero-inner { padding-left: 20px; padding-right: 20px; }
+.hero-stats { max-width: 100%; }
+.reel-grid, .reel-card { min-width: 0; }
+.reel-card { max-width: 100%; }
+.reel-card video, .reel-card img { max-width: 100%; }
+html, body { overflow-x: clip; }
+</style>
+
+<style>
+.kf-chat-btn{position:fixed;right:20px;bottom:68px;z-index:9998;background:#E8A33D;color:#1A1A1A;border:0;border-radius:999px;padding:13px 20px;font:600 15px/1 inherit;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.kf-chat-btn:hover{background:#f0b155}
+.kf-chat-panel{position:fixed;right:20px;bottom:132px;z-index:9998;width:min(332px,calc(100vw - 32px));background:#1A1A1A;color:#f5f1e8;border:1px solid #333;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.5);overflow:hidden;display:none;font:400 14.5px/1.5 inherit}
+.kf-chat-panel.open{display:block}
+.kf-chat-head{background:#111;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.kf-chat-head b{font-size:15px}
+.kf-chat-head small{display:block;color:#c9c2b4;font-size:12px}
+.kf-chat-x{background:none;border:0;color:#f5f1e8;font-size:20px;cursor:pointer;line-height:1}
+.kf-chat-body{padding:16px;display:flex;flex-direction:column;gap:10px;max-height:330px;overflow-y:auto}
+.kf-msg{padding:10px 13px;border-radius:13px;max-width:88%}
+.kf-msg.bot{background:#2a2a2e;align-self:flex-start;border-bottom-left-radius:4px}
+.kf-msg.user{background:#E8A33D;color:#1A1A1A;align-self:flex-end;border-bottom-right-radius:4px;font-weight:600}
+.kf-chips{display:flex;flex-direction:column;gap:8px}
+.kf-chip{background:transparent;border:1.5px solid #E8A33D;color:#E8A33D;border-radius:999px;padding:9px 14px;font:600 14px inherit;cursor:pointer;text-align:left}
+.kf-chip:hover{background:#E8A33D;color:#1A1A1A}
+.kf-chip:disabled{opacity:.45;cursor:default}
+.kf-cta{display:block;text-align:center;background:#E8A33D;color:#1A1A1A;border-radius:10px;padding:11px 14px;font-weight:700;text-decoration:none;cursor:pointer;border:0;width:100%}
+.kf-reviews{padding:72px 0}
+.kf-reviews .stars{color:#E8A33D;font-size:26px;letter-spacing:6px}
+.kf-reviews-card{border:1px solid var(--line,#ddd);border-radius:14px;padding:30px;max-width:720px;margin-top:24px}
+</style>
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://keyframemedia-portfolio.netlify.app/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="KeyFrame Media — Portfolio" />
+<meta property="og:description" content="Sample reels and client work slots from KeyFrame Media — short-form video for real estate agents." />
+<meta property="og:url" content="https://keyframemedia-portfolio.netlify.app/" />
+<meta name="twitter:card" content="summary" />
+<meta name="google-site-verification" content="tVueQURUVXqLCFtT-OSXIO81-SK5sgdt_KvszkhiuUQ" />
+</head>
+  <body>
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="wrap hero-inner">
+        <span class="hero-eyebrow">KeyFrame Media · Portfolio</span>
+        <h1 class="display">Reels that <span class="hl">sell homes</span>, not just list them</h1>
+        <p class="hero-lede">
+          We turn real estate agents' raw phone footage into scroll-stopping reels —
+          <strong>edited, captioned, and posted for you.</strong> Below is the work:
+          our sample reels show exactly what we produce, and the client wall is where
+          your listings will live.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-amber" href="#samples">Watch the sample reels</a>
+          <a class="btn btn-ghost" href="#clients">See the client wall</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>403% more</b><span>inquiries on listings with video</span></div>
+          <div><b>12 reels</b><span>produced for you every month</span></div>
+          <div><b>48 hours</b><span>turnaround on every reel</span></div>
+        </div>
+      </div>
+      <div class="filmstrip" aria-hidden="true">
+        <div class="track" id="stripTrack">
+          <div class="frame"><img src="assets/asset-01-e4688e6d93.jpg" alt="" /><i>Listing tour</i></div>
+          <div class="frame"><img src="assets/asset-02-6ac4c0e3c7.jpg" alt="" /><i>Family tour</i></div>
+          <div class="frame"><img src="assets/asset-03-5659155ec1.jpg" alt="" /><i>Curb appeal</i></div>
+          <div class="frame"><img src="assets/asset-04-84ae8f1fe2.jpg" alt="" /><i>Market update</i></div>
+          <div class="frame"><img src="assets/asset-05-ce501615a3.jpg" alt="" /><i>Neighborhood</i></div>
+          <div class="frame"><img src="assets/asset-06-582b61ea7a.jpg" alt="" /><i>Agent intro</i></div>
+          <div class="frame"><img src="assets/asset-01-e4688e6d93.jpg" alt="" /><i>Listing tour</i></div>
+          <div class="frame"><img src="assets/asset-02-6ac4c0e3c7.jpg" alt="" /><i>Family tour</i></div>
+          <div class="frame"><img src="assets/asset-03-5659155ec1.jpg" alt="" /><i>Curb appeal</i></div>
+          <div class="frame"><img src="assets/asset-04-84ae8f1fe2.jpg" alt="" /><i>Market update</i></div>
+          <div class="frame"><img src="assets/asset-05-ce501615a3.jpg" alt="" /><i>Neighborhood</i></div>
+          <div class="frame"><img src="assets/asset-06-582b61ea7a.jpg" alt="" /><i>Agent intro</i></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= SAMPLE REELS ================= -->
+    <main class="wrap">
+      <section id="samples">
+        <div class="sec-head">
+          <h2 class="display"><span class="n">01</span>Sample reels</h2>
+          <span class="badge badge-sample">Sample work</span>
+        </div>
+        <p class="sec-sub">
+          Real cinematic property footage — the same kind of raw material we turn into finished
+          client reels. None of these are client listings: the five up front are sample reels in
+          the finished format we deliver, and the nine after them are stock footage. Together they
+          show the camera work, pacing, and vertical framing your own phone footage gets shaped
+          into once we edit it. Tap any clip to watch it.
+        </p>
+
+        <div class="reel-grid">
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-wide="true" data-src="assets/asset-07-0d2b0ad3fd.mp4" data-title="The Chic Living Space" data-sub="Sample footage · Sample reel" aria-label="Play sample reel: The Chic Living Space">
+              <video src="assets/asset-08-083aa3e378.mp4" poster="assets/asset-09-6bb4642447.jpg" muted loop playsinline preload="metadata" data-preview aria-hidden="true"></video>
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:21</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Chic Living Space</h3>
+              <p>Explore a chic, contemporary living space with stylish furniture.</p>
+              <div class="reel-meta"><span class="chip">Living room</span><span class="chip">9:16 vertical</span><span class="chip">Sample reel</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-wide="true" data-src="assets/asset-10-923b0f22b0.mp4" data-title="The Sunlit Dining Room" data-sub="Sample footage · Sample reel" aria-label="Play sample reel: The Sunlit Dining Room">
+              <video src="assets/asset-11-63aa393d43.mp4" poster="assets/asset-12-5d28a6a7ae.jpg" muted loop playsinline preload="metadata" data-preview aria-hidden="true"></video>
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:12</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Sunlit Dining Room</h3>
+              <p>Spacious and elegant dining area in a modern home with natural lighting.</p>
+              <div class="reel-meta"><span class="chip">Dining room</span><span class="chip">9:16 vertical</span><span class="chip">Sample reel</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-wide="true" data-src="assets/asset-13-5e906574ae.mp4" data-title="The Designer Dining Space" data-sub="Sample footage · Sample reel" aria-label="Play sample reel: The Designer Dining Space">
+              <video src="assets/asset-14-837abe0a7b.mp4" poster="assets/asset-15-8738281c22.jpg" muted loop playsinline preload="metadata" data-preview aria-hidden="true"></video>
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:09</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Designer Dining Space</h3>
+              <p>Stylish and modern dining space with elegant furniture and decor.</p>
+              <div class="reel-meta"><span class="chip">Dining room</span><span class="chip">9:16 vertical</span><span class="chip">Sample reel</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-wide="true" data-src="assets/asset-16-3941c1e71a.mp4" data-title="The Bedroom &amp; Bath Tour" data-sub="Sample footage · Sample reel" aria-label="Play sample reel: The Bedroom and Bath Tour">
+              <video src="assets/asset-17-26552305de.mp4" poster="assets/asset-18-d08b4159dc.jpg" muted loop playsinline preload="metadata" data-preview aria-hidden="true"></video>
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:16</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Bedroom &amp; Bath Tour</h3>
+              <p>Explore a modern, sunlit bedroom and sleek bathroom in a contemporary home.</p>
+              <div class="reel-meta"><span class="chip">Bedroom + bath</span><span class="chip">9:16 vertical</span><span class="chip">Sample reel</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-wide="true" data-src="assets/asset-19-737e29229e.mp4" data-title="The Garden-View Living Room" data-sub="Sample footage · Sample reel" aria-label="Play sample reel: The Garden-View Living Room">
+              <video src="assets/asset-20-d680f2780e.mp4" poster="assets/asset-21-fb144d2b6a.jpg" muted loop playsinline preload="metadata" data-preview aria-hidden="true"></video>
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:07</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Garden-View Living Room</h3>
+              <p>Spacious living room with floor-to-ceiling windows and garden view.</p>
+              <div class="reel-meta"><span class="chip">Living room</span><span class="chip">9:16 vertical</span><span class="chip">Sample reel</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-22-4b425db797.mp4" data-title="The Kitchen Tour" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Kitchen Tour">
+              <img src="assets/asset-23-5b483529ac.jpg" alt="Bright open interior on the kitchen and dining glide-through" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:21</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Kitchen Tour</h3>
+              <p>One slow glide from the island into the dining space — the kind of opening shot that makes buyers stop scrolling and start picturing Sunday mornings.</p>
+              <div class="reel-meta"><span class="chip">Kitchen</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-24-42a65ae7b7.mp4" data-title="The Open-Concept Tour" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Open-Concept Tour">
+              <img src="assets/asset-25-bdefd6a1ac.jpg" alt="Open-concept living space with kitchen flowing into the lounge" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:16</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Open-Concept Tour</h3>
+              <p>A wide, unhurried pan across an open-plan main floor — space is the selling point, and this is how it reads on a phone screen.</p>
+              <div class="reel-meta"><span class="chip">Open concept</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-26-e606693141.mp4" data-title="The Bright Kitchen" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Bright Kitchen">
+              <img src="assets/asset-27-ef744a3ccf.jpg" alt="Bright white kitchen with clean modern lines" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:10</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Bright Kitchen</h3>
+              <p>White cabinetry, daylight, and a clean sweep of the counters — kitchens sell houses, and bright ones sell them faster.</p>
+              <div class="reel-meta"><span class="chip">Kitchen</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-28-11e67a44b2.mp4" data-title="The Bedroom Showcase" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Bedroom Showcase">
+              <img src="assets/asset-29-7bf8627481.jpg" alt="Warm, inviting bedroom with soft natural light" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:17</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Bedroom Showcase</h3>
+              <p>A gentle pan across a calm, made-up primary suite — the room buyers judge by how it feels, not how it measures.</p>
+              <div class="reel-meta"><span class="chip">Bedroom</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-30-ee65af0189.mp4" data-title="The Bathroom Detail" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Bathroom Detail">
+              <img src="assets/asset-31-9bca4c9264.jpg" alt="Moody, spa-like bathroom with dark finishes" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:12</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Bathroom Detail</h3>
+              <p>Fixtures, tile, and low light shot like a spa ad — detail reels are where a listing's quality shows up closest.</p>
+              <div class="reel-meta"><span class="chip">Bathroom</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-32-702d7e272e.mp4" data-title="The Aerial Exterior" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Aerial Exterior">
+              <img src="assets/asset-33-fd3f534631.jpg" alt="House exterior and roofline seen from an elevated angle" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:14</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Aerial Exterior</h3>
+              <p>The drone shot that sets scale — roof, lot, and street in one rising move. Every listing launch deserves this opener.</p>
+              <div class="reel-meta"><span class="chip">Aerial</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-34-24789f72cd.mp4" data-title="The Outdoor Living" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Outdoor Living">
+              <img src="assets/asset-35-123b4c6c56.jpg" alt="Pool and patio in bright daylight" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:14</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Outdoor Living</h3>
+              <p>Pool, patio, and shade in one slow pan — outdoor space is a lifestyle shot, and lifestyle is what gets shared.</p>
+              <div class="reel-meta"><span class="chip">Outdoor</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-36-bbffcde09a.mp4" data-title="The Living Room" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Living Room">
+              <img src="assets/asset-37-fd276a65d2.jpg" alt="Minimalist living room with a fireplace" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:11</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Living Room</h3>
+              <p>Clean lines and a lit fireplace — a short, calm clip that proves a room doesn't need a voiceover to hold attention.</p>
+              <div class="reel-meta"><span class="chip">Living room</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+
+          <article class="reel-card">
+            <button class="thumb" type="button" data-open-player data-src="assets/asset-38-eb64c5ef29.mp4" data-title="The Dusk Curb Appeal" data-sub="Sample footage · Stock clip" aria-label="Play sample clip: The Dusk Curb Appeal">
+              <img src="assets/asset-39-b4ba576d9e.jpg" alt="House exterior at dusk with warm windows glowing" />
+              <span class="badge badge-sample">Sample</span>
+              <span class="dur">0:20</span>
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            </button>
+            <div class="reel-body">
+              <h3>The Dusk Curb Appeal</h3>
+              <p>Twilight, warm windows, and a slow push toward the front door — the closing shot that makes a home look like a promise.</p>
+              <div class="reel-meta"><span class="chip">Exterior</span><span class="chip">Dusk</span><span class="chip">9:16 vertical</span><span class="chip">Stock footage</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= CLIENT WALL ================= -->
+    <div class="client-band" id="clients">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="display"><span class="n">02</span>Client work</h2>
+          <span class="badge badge-open">Now booking</span>
+        </div>
+        <p class="sec-sub">
+          KeyFrame Media is newly launched, so this wall is filling up from zero — honestly.
+          These slots are reserved for our first clients' reels. Book the Content Engine and
+          your listings take the first spots.
+        </p>
+        <div class="slot-grid">
+          <div class="slot">
+            <span class="slotnum">Client reel · 01</span>
+            <span class="plus" aria-hidden="true">+</span>
+            <h3>Your listing here</h3>
+            <p>Reserved for a founding client's first listing tour.</p>
+          </div>
+          <div class="slot">
+            <span class="slotnum">Client reel · 02</span>
+            <span class="plus" aria-hidden="true">+</span>
+            <h3>Your listing here</h3>
+            <p>Reserved for a founding client's first market update.</p>
+          </div>
+          <div class="slot">
+            <span class="slotnum">Client reel · 03</span>
+            <span class="plus" aria-hidden="true">+</span>
+            <h3>Your listing here</h3>
+            <p>Reserved for a founding client's first neighborhood spotlight.</p>
+          </div>
+          <div class="slot">
+            <span class="slotnum">Client reel · 04</span>
+            <span class="plus" aria-hidden="true">+</span>
+            <h3>Your listing here</h3>
+            <p>Reserved for a founding client's first agent intro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= OFFER ================= -->
+    <div class="wrap">
+      <div class="offer" id="offer">
+        <div>
+          <h2 class="display">The 12 Reels/Month <span class="hl">Content Engine</span></h2>
+          <p class="offer-sub">
+            One flagship package, everything handled. You shoot the clips on your phone —
+            we do everything after that.
+          </p>
+          <div class="hero-cta" style="margin-top:24px;">
+            <a class="btn btn-amber" href="#samples">See what you get</a>
+          </div>
+        </div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f5a914" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>12 edited reels a month</b> — from your raw phone footage</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f5a914" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Captions + posting included</b> — you never open an editing app</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f5a914" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Profile optimization</b> — bundled free with every plan</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f5a914" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>48-hour turnaround</b> — on every single reel</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" stroke="#f5a914" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Month-to-month</b> — no contracts, no lock-in</span></li>
+        </ul>
+      </div>
+
+      <!-- ================= PROCESS ================= -->
+      <section id="process" style="padding-top:64px;">
+        <div class="sec-head">
+          <h2 class="display"><span class="n">03</span>How it works</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="k">01</div><h3>You shoot</h3><p>Film your listings and talking points on your phone — we give you simple shot guides.</p></div>
+          <div class="step"><div class="k">02</div><h3>We edit</h3><p>Hooks, cuts, captions, and polish within 48 hours, in the style of the samples above.</p></div>
+          <div class="step"><div class="k">03</div><h3>We post</h3><p>Reels go out on your accounts on a consistent schedule — a month of content, handled.</p></div>
+          <div class="step"><div class="k">04</div><h3>You appear here</h3><p>Your best reels join the client wall above as proof for your next sellers.</p></div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap foot">
+        <span class="brand">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="27" height="27" rx="6" stroke="#f5a914" stroke-width="2.6"/>
+            <circle cx="13" cy="16" r="4.6" stroke="#f5a914" stroke-width="2.6"/>
+            <path d="M16.4 13l6.1-3.4M16.8 16h6M16.4 19l6.1 3.4" stroke="#f5a914" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+          KeyFrame Media
+        </span>
+        <p>Sample clips on this page are demonstration footage — sample reels and stock clips, not client listings — shown to demonstrate the raw material and editing style KeyFrame Media delivers. Client reels appear as work is delivered.</p>
+      </div>
+    </footer>
+
+    <!-- ================= PLAYER ================= -->
+    <div class="modal" id="playerModal" role="dialog" aria-modal="true" aria-labelledby="playerTitle" hidden>
+      <div class="modal-card">
+        <video id="playerVideo" controls playsinline preload="metadata"></video>
+        <div class="modal-meta">
+          <div>
+            <h3 id="playerTitle">Sample reel</h3>
+            <p id="playerSub">Sample work</p>
+          </div>
+          <button class="modal-close" id="playerClose" type="button" aria-label="Close player">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var modal = document.getElementById("playerModal");
+        var video = document.getElementById("playerVideo");
+        var title = document.getElementById("playerTitle");
+        var sub = document.getElementById("playerSub");
+        var closeBtn = document.getElementById("playerClose");
+        var modalCard = document.querySelector(".modal-card");
+        var lastFocus = null;
+
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var visiblePreviews = new Set();
+        function pausePreviews() {
+          document.querySelectorAll("[data-preview]").forEach(function (v) { v.pause(); });
+        }
+        function resumePreviews() {
+          if (reduceMotion) return;
+          visiblePreviews.forEach(function (v) {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          });
+        }
+
+        function openPlayer(btn) {
+          lastFocus = btn;
+          title.textContent = btn.getAttribute("data-title") || "Sample reel";
+          sub.textContent = btn.getAttribute("data-sub") || "Sample work";
+          video.src = btn.getAttribute("data-src");
+          modalCard.classList.toggle("wide", btn.hasAttribute("data-wide"));
+          pausePreviews();
+          modal.hidden = false;
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden";
+          closeBtn.focus();
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+        function closePlayer() {
+          video.pause();
+          video.removeAttribute("src");
+          video.load();
+          modal.classList.remove("open");
+          modal.hidden = true;
+          document.body.style.overflow = "";
+          if (lastFocus) lastFocus.focus();
+          resumePreviews();
+        }
+        document.querySelectorAll("[data-open-player]").forEach(function (btn) {
+          btn.addEventListener("click", function () { openPlayer(btn); });
+        });
+        closeBtn.addEventListener("click", closePlayer);
+        modal.addEventListener("click", function (e) { if (e.target === modal) closePlayer(); });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && modal.classList.contains("open")) closePlayer();
+        });
+
+        if (!reduceMotion && "IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              var v = entry.target;
+              if (entry.isIntersecting) {
+                visiblePreviews.add(v);
+                if (!modal.classList.contains("open")) {
+                  v.muted = true;
+                  var p = v.play();
+                  if (p && p.catch) p.catch(function () {});
+                }
+              } else {
+                visiblePreviews.delete(v);
+                v.pause();
+              }
+            });
+          }, { threshold: 0.35 });
+          document.querySelectorAll("[data-preview]").forEach(function (v) { io.observe(v); });
+        }
+      })();
+    </script>
+  
+<button type="button" class="kf-chat-btn" id="kfChatBtn" aria-label="Open chat">💬 Chat with us</button>
+<div class="kf-chat-panel" id="kfChatPanel" role="dialog" aria-label="KeyFrame Media chat">
+  <div class="kf-chat-head"><div><b>KeyFrame Media</b><small>Quick answers — no waiting</small></div><button type="button" class="kf-chat-x" id="kfChatX" aria-label="Close chat">×</button></div>
+  <div class="kf-chat-body" id="kfChatBody"></div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('kfChatBtn'),panel=document.getElementById('kfChatPanel'),body=document.getElementById('kfChatBody'),started=false;
+  function addMsg(text,who){var d=document.createElement('div');d.className='kf-msg '+who;d.textContent=text;body.appendChild(d);body.scrollTop=body.scrollHeight;}
+  function start(){
+    if(started)return;started=true;
+    addMsg('Hi there! \uD83D\uDC4B How may I assist you today?','bot');
+    setTimeout(function(){
+      addMsg('What services are you interested in?','bot');
+      var chips=document.createElement('div');chips.className='kf-chips';
+      ['Meta Ads','Turn my photos into a reel'].forEach(function(label){
+        var c=document.createElement('button');c.type='button';c.className='kf-chip';c.textContent=label;
+        c.onclick=function(){
+          chips.querySelectorAll('button').forEach(function(b){b.disabled=true;});
+          addMsg(label,'user');
+          setTimeout(function(){
+            addMsg('Great choice! Please fill up the form and one of our representatives will contact you.','bot');
+            var wrap=document.createElement('div');wrap.innerHTML='<a class="kf-cta" href="https://keyframemedia.netlify.app/#start">Fill the form</a>';body.appendChild(wrap);body.scrollTop=body.scrollHeight;
+            var fb=document.getElementById('kfFormBtn');
+            if(fb){fb.onclick=function(){panel.classList.remove('open');var t=document.querySelector('#start')||document.getElementById('leadForm');if(t){t.scrollIntoView({behavior:'smooth'});}var n=document.getElementById('fName');if(n){setTimeout(function(){n.focus();},600);}};}
+          },450);
+        };
+        chips.appendChild(c);
+      });
+      body.appendChild(chips);body.scrollTop=body.scrollHeight;
+    },450);
+  }
+  btn.onclick=function(){panel.classList.toggle('open');if(panel.classList.contains('open'))start();};
+  document.getElementById('kfChatX').onclick=function(){panel.classList.remove('open');};
+})();
+</script>
+
+</body>
+</html>
